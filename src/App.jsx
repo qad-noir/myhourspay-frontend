@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Apple, ArrowRight, Bell, BriefcaseMedical, Calculator,
   Car, Check, CheckCircle2, ChevronDown, Clock3, FileText, HardHat,
@@ -33,13 +34,13 @@ const checks = [
 ]
 
 function Brand() {
-  return <a href="#top" className="flex shrink-0 items-center gap-3" aria-label="HourHabor home">
+  return <Link to="/" className="flex shrink-0 items-center gap-3" aria-label="HourHabor home">
     <span className="brand-mark"><Clock3 size={24} strokeWidth={2.5}/></span>
     <span>
       <span className="block text-xl font-extrabold leading-none tracking-tight text-slate-900">Hour<span className="text-green-600">Habor</span></span>
       <span className="mt-1 block text-[8px] font-bold uppercase tracking-[.12em] text-slate-400">Your working hours, all in one place.</span>
     </span>
-  </a>
+  </Link>
 }
 
 function Header() {
@@ -51,14 +52,14 @@ function Header() {
         {navItems.map((item, i) => <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} className="flex items-center gap-1 text-[13px] font-semibold text-slate-700 transition-colors hover:text-green-600">{item}{i === 0 && <ChevronDown size={14}/>}</a>)}
       </nav>
       <div className="hidden shrink-0 items-center gap-3 lg:flex">
-        <button className="btn-outline !px-5 !py-2.5">Log In</button>
-        <button className="btn-primary !px-5 !py-2.5">Sign Up Free</button>
+        <Link to="/login" className="btn-outline !px-5 !py-2.5">Log In</Link>
+        <Link to="/signup" className="btn-primary !px-5 !py-2.5">Sign Up Free</Link>
       </div>
       <button className="grid size-10 place-items-center rounded-lg border border-slate-200 lg:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">{open ? <X/> : <Menu/>}</button>
     </div>
     {open && <nav className="border-t border-slate-100 bg-white px-5 py-4 lg:hidden">
       {navItems.map(item => <a key={item} href={`#${item.toLowerCase().replaceAll(' ', '-')}`} onClick={() => setOpen(false)} className="block border-b border-slate-100 py-3 font-semibold text-slate-700">{item}</a>)}
-      <div className="mt-4 flex gap-3"><button className="btn-outline flex-1">Log In</button><button className="btn-primary flex-1">Sign Up Free</button></div>
+      <div className="mt-4 flex gap-3"><Link to="/login" className="btn-outline flex-1">Log In</Link><Link to="/signup" className="btn-primary flex-1">Sign Up Free</Link></div>
     </nav>}
   </header>
 }
@@ -132,7 +133,7 @@ function Hero() {
         <span className="eyebrow">For hourly workers, by people who get it</span>
         <h1 className="mt-6 text-[44px] font-extrabold leading-[1.04] tracking-[-.04em] text-slate-900 sm:text-6xl lg:text-[68px]">Track Your Hours.<br/><span className="text-green-600">Know Your Worth.</span></h1>
         <p className="mt-6 max-w-lg text-[17px] leading-8 text-slate-600">HourHabor helps you track your hours, calculate overtime, and see exactly what you’ll earn – before payday. Simple, accurate and built for real life.</p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row"><button className="btn-primary">Get Started Free <ArrowRight size={18}/></button><button className="btn-outline"><Play className="fill-green-600 text-green-600" size={17}/>See How It Works</button></div>
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link to="/signup" className="btn-primary">Get Started Free <ArrowRight size={18}/></Link><a href="#features" className="btn-outline"><Play className="fill-green-600 text-green-600" size={17}/>See How It Works</a></div>
         <div className="mt-5 flex items-center gap-2 text-sm text-slate-500"><CheckCircle2 className="text-green-600" size={17}/><span>Free to start</span><i className="size-1 rounded-full bg-slate-300"/><span>No credit card required</span></div>
       </div>
       <Phones />
