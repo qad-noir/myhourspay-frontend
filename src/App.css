@@ -1,0 +1,40 @@
+@reference "tailwindcss";
+
+.page-wrap { @apply mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-10; }
+.brand-mark { @apply relative grid size-10 place-items-center rounded-full bg-green-600 text-white shadow-sm; }
+.brand-mark::after { content: ''; @apply absolute -right-1 top-1 h-3 w-3 rounded-full border-t-2 border-green-400; transform: rotate(35deg); }
+.btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-6 py-3.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2; }
+.btn-outline { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-sm font-bold text-slate-700 transition-colors hover:border-green-300 hover:text-green-700; }
+.eyebrow { @apply inline-flex rounded-full bg-green-50 px-4 py-2 text-[10px] font-extrabold uppercase tracking-[.14em] text-green-700; }
+.section-title { @apply text-3xl font-extrabold leading-tight tracking-[-.03em] text-slate-900 md:text-[38px]; }
+
+.phone-stage { @apply relative mx-auto h-[520px] w-full max-w-[570px]; }
+.phone-glow { @apply absolute left-1/2 top-1/2 size-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green-100/80 blur-2xl; }
+.phone { @apply absolute overflow-hidden rounded-[34px] border-[7px] border-slate-900 bg-slate-900 shadow-2xl; }
+.phone-screen { @apply relative h-full overflow-hidden rounded-[26px] bg-white px-4 pb-12 pt-7 text-slate-800; }
+.phone-notch { @apply absolute left-1/2 top-[6px] z-10 h-[18px] w-[76px] -translate-x-1/2 rounded-b-xl bg-slate-900; }
+.front-phone { @apply left-[8%] top-5 z-20 h-[490px] w-[245px] sm:left-[15%] sm:w-[255px]; transform: rotate(-1deg); }
+.back-phone { @apply right-[4%] top-0 z-10 h-[455px] w-[230px] opacity-95 sm:right-[10%] sm:w-[242px]; transform: rotate(5deg); }
+.earnings-card { @apply rounded-2xl bg-green-600 p-4 text-white shadow-lg shadow-green-200; }
+.float-chip { @apply absolute z-30 flex items-center gap-2 rounded-xl border border-slate-100 bg-white px-3 py-2 text-[10px] text-slate-900 shadow-lg; }
+.float-chip b, .float-chip small { @apply block; }
+.float-chip small { @apply text-[8px] text-slate-400; }
+.chip-top { @apply right-0 top-[105px]; }
+.chip-bottom { @apply bottom-9 left-0; }
+
+.dashboard-card { @apply min-h-[145px] rounded-2xl border border-slate-100 bg-white p-5 shadow-sm; }
+.dashboard-card h3 { @apply text-xs font-bold text-slate-700; }
+.donut { @apply relative grid size-[104px] shrink-0 place-items-center rounded-full; background: conic-gradient(#22c55e 0 79%, #60a5fa 79% 95%, #fbbf24 95% 100%); }
+.donut::after { content: ''; @apply absolute size-[68px] rounded-full bg-white; }
+.donut > div { @apply relative z-10 text-center; }
+.donut b { @apply block text-base font-extrabold text-slate-900; }
+.donut small { @apply block text-[8px] text-slate-400; }
+.play-triangle { width: 0; height: 0; border-top: 13px solid transparent; border-bottom: 13px solid transparent; border-left: 22px solid #22c55e; }
+
+@media (max-width: 639px) {
+  .phone-stage { height: 480px; transform: scale(.9); transform-origin: top center; margin-bottom: -45px; }
+  .front-phone { left: 0; }
+  .back-phone { right: 0; }
+  .chip-top { right: -10px; }
+  .chip-bottom { left: -8px; }
+}
