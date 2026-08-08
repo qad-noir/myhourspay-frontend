@@ -12,11 +12,11 @@ const benefits = [
 ]
 
 function AuthBrand({ light = false }) {
-	return <Link to="/" className="flex items-center gap-3" aria-label="HourHabor home">
-		<span className={`grid size-11 place-items-center rounded-full ${light ? 'bg-white text-green-600' : 'bg-green-600 text-white'}`}><Clock3 size={25} strokeWidth={2.5} /></span>
+	return <Link to="/" className="flex items-center gap-3" aria-label="myhourspay home">
+		<span className={`grid size-11 place-items-center rounded-xl ${light ? 'bg-white text-orange-600' : 'bg-orange-500 text-white'}`}><Clock3 size={25} strokeWidth={2.5} /></span>
 		<span>
-			<span className={`block text-xl font-extrabold leading-none tracking-tight ${light ? 'text-white' : 'text-slate-900'}`}>Hour<span className={light ? 'text-green-200' : 'text-green-600'}>Habor</span></span>
-			<span className={`mt-1 block text-[8px] font-bold uppercase tracking-[.12em] ${light ? 'text-green-100' : 'text-slate-400'}`}>Your working hours, all in one place.</span>
+			<span className={`block text-xl font-extrabold leading-none tracking-tight ${light ? 'text-white' : 'text-slate-900'}`}>myhours<span className={light ? 'text-orange-300' : 'text-orange-500'}>pay</span></span>
+			<span className={`mt-1 block text-[8px] font-bold uppercase tracking-[.12em] ${light ? 'text-slate-400' : 'text-slate-400'}`}>Make every hour count.</span>
 		</span>
 	</Link>
 }
@@ -40,12 +40,12 @@ function AuthAside({ signup }) {
 		<div className="relative z-10 flex h-full max-w-xl flex-col justify-between">
 			<AuthBrand light />
 			<div className="py-14">
-				<span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-[10px] font-extrabold uppercase tracking-[.14em] text-green-50 ring-1 ring-white/15"><Sparkles size={14} />Built for real working life</span>
+				<span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-[10px] font-extrabold uppercase tracking-[.14em] text-orange-100 ring-1 ring-white/15"><Sparkles size={14} />Built for focused work</span>
 				<h2 className="mt-6 text-4xl font-extrabold leading-tight tracking-[-.04em] text-white lg:text-5xl">Your hours deserve<br />to add up.</h2>
-				<p className="mt-5 max-w-md text-base leading-7 text-green-50/80">{signup ? 'Join thousands of hourly workers taking control of their time, overtime and earnings.' : 'Welcome back. Your shifts, earnings and timesheets are ready when you are.'}</p>
+				<p className="mt-5 max-w-md text-base leading-7 text-slate-300">{signup ? 'Create a clear record of your time, projects and earnings in one focused workspace.' : 'Welcome back. Your projects, hours and reports are ready when you are.'}</p>
 				<div className="mt-10 space-y-6">{benefits.map(([title, text], i) => <div key={title} className="flex gap-4"><span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/10 text-white">{i === 2 ? <ShieldCheck size={20} /> : <Check size={19} />}</span><div><h3 className="font-bold text-white">{title}</h3><p className="mt-1 text-sm leading-5 text-green-50/70">{text}</p></div></div>)}</div>
 			</div>
-			<p className="text-xs text-green-100/70">© 2026 HourHabor. Made for hourly workers across the UK.</p>
+			<p className="text-xs text-slate-500">© 2026 myhourspay. Make every hour count.</p>
 		</div>
 		<div className="auth-orb auth-orb-one" /><div className="auth-orb auth-orb-two" />
 	</aside>
@@ -75,7 +75,7 @@ export default function AuthPage({ mode }) {
 		<section className="relative flex min-h-screen items-center justify-center px-5 py-10 sm:px-10 lg:px-16">
 			<div className="absolute left-5 top-6 lg:hidden"><AuthBrand /></div>
 			<div className="w-full max-w-[470px] pt-20 lg:pt-0">
-				<div className="mb-8"><span className="text-xs font-extrabold uppercase tracking-[.18em] text-green-600">{signup ? 'Start for free' : 'Welcome back'}</span><h1 className="mt-3 text-3xl font-extrabold tracking-[-.035em] text-slate-900 sm:text-[40px]">{signup ? 'Create your account' : 'Log in to HourHabor'}</h1><p className="mt-3 text-sm leading-6 text-slate-500">{signup ? 'Start tracking your hours and earnings in just a minute.' : 'Enter your details to access your hours and earnings.'}</p></div>
+				<div className="mb-8"><span className="text-xs font-extrabold uppercase tracking-[.18em] text-orange-500">{signup ? 'Start tracking' : 'Welcome back'}</span><h1 className="mt-3 text-3xl font-extrabold tracking-[-.035em] text-slate-900 sm:text-[40px]">{signup ? 'Create your account' : 'Log in to myhourspay'}</h1><p className="mt-3 text-sm leading-6 text-slate-500">{signup ? 'Start tracking your hours and earnings in just a minute.' : 'Enter your details to access your hours and earnings.'}</p></div>
 
 				{submitted ? <div className="rounded-2xl border border-green-200 bg-green-50 p-6 text-center"><CheckCircle2 className="mx-auto text-green-600" size={36} /><h2 className="mt-3 text-lg font-extrabold text-slate-900">{signup ? 'Account details look good!' : 'Login details submitted!'}</h2><p className="mt-2 text-sm leading-6 text-slate-600">This frontend is ready to connect to your authentication API.</p><button onClick={() => setSubmitted(false)} className="btn-primary mt-5">Back to form</button></div> : <form onSubmit={handleSubmit} noValidate className="space-y-5">
 					{signup && <InputField id="name" label="Full name" icon={UserRound} placeholder="Alex Morgan" value={values.name} onChange={update('name')} error={errors.name} autoComplete="name" />}
@@ -90,7 +90,7 @@ export default function AuthPage({ mode }) {
 
 				<div className="my-7 flex items-center gap-4"><span className="h-px flex-1 bg-slate-200" /><span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">or continue with</span><span className="h-px flex-1 bg-slate-200" /></div>
 				<button className="btn-outline w-full !py-3.5"><span className="grid size-5 place-items-center rounded-full bg-white text-sm font-extrabold text-blue-500 shadow-sm ring-1 ring-slate-200">G</span>Continue with Google</button>
-				<p className="mt-7 text-center text-sm text-slate-500">{signup ? 'Already have an account?' : 'New to HourHabor?'} <Link to={signup ? '/login' : '/signup'} className="font-extrabold text-green-600 hover:text-green-700">{signup ? 'Log in' : 'Create a free account'}</Link></p>
+				<p className="mt-7 text-center text-sm text-slate-500">{signup ? 'Already have an account?' : 'New to myhourspay?'} <Link to={signup ? '/login' : '/signup'} className="font-extrabold text-orange-500 hover:text-orange-600">{signup ? 'Log in' : 'Create an account'}</Link></p>
 			</div>
 		</section>
 	</main>
