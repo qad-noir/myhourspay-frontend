@@ -12,12 +12,9 @@ const benefits = [
 ]
 
 function AuthBrand({ light = false }) {
-	return <Link to="/" className="flex items-center gap-3" aria-label="myhourspay home">
-		<span className={`grid size-11 place-items-center rounded-xl ${light ? 'bg-white text-orange-600' : 'bg-orange-500 text-white'}`}><Clock3 size={25} strokeWidth={2.5} /></span>
-		<span>
-			<span className={`block text-xl font-extrabold leading-none tracking-tight ${light ? 'text-white' : 'text-slate-900'}`}>myhours<span className={light ? 'text-orange-300' : 'text-orange-500'}>pay</span></span>
-			<span className={`mt-1 block text-[8px] font-bold uppercase tracking-[.12em] ${light ? 'text-slate-400' : 'text-slate-400'}`}>Make every hour count.</span>
-		</span>
+	return <Link to="/" className={`brand ${light ? 'brand-dark' : ''}`} aria-label="myhourspay home">
+		<span className="brand-mark"><Clock3 size={20} strokeWidth={2.4} /></span>
+		<span className="brand-name">myhours<span>pay</span></span>
 	</Link>
 }
 
