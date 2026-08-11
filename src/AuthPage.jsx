@@ -95,7 +95,7 @@ export default function AuthPage({ mode }) {
 					<InputField id="email" label="Email address" type="email" icon={Mail} placeholder="you@example.com" value={values.email} onChange={update('email')} error={errors.email} autoComplete="email" />
 					<div>
 						<InputField id="password" label="Password" type="password" icon={LockKeyhole} placeholder={signup ? 'At least 8 characters' : 'Enter your password'} value={values.password} onChange={update('password')} error={errors.password} autoComplete={signup ? 'new-password' : 'current-password'} />
-						{signup && <PasswordRequirements password={values.password} />}
+						{signup && values.password.length > 0 && <PasswordRequirements password={values.password} />}
 					</div>
 					{signup && <InputField id="confirm" label="Confirm password" type="password" icon={LockKeyhole} placeholder="Repeat your password" value={values.confirm} onChange={update('confirm')} error={errors.confirm} autoComplete="new-password" />}
 
