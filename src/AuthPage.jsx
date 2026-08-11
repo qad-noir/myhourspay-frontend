@@ -32,6 +32,21 @@ function InputField({ id, label, type = 'text', icon: Icon, placeholder, value, 
 	</div>
 }
 
+function PasswordRequirements({ password }) {
+	const requirements = [
+		['At least 8 characters', password.length >= 8],
+		['Contains a number', /\d/.test(password)],
+		['Contains uppercase & lowercase', /[a-z]/.test(password) && /[A-Z]/.test(password)],
+	]
+
+	return <ul className="mt-3 space-y-2" aria-label="Password requirements">
+		{requirements.map(([label, met]) => <li key={label} className={`flex items-center gap-2 text-xs font-medium transition-colors ${met ? 'text-green-600' : 'text-slate-400'}`}>
+			<span className={`grid size-4 shrink-0 place-items-center rounded-full transition-colors ${met ? 'bg-green-100 text-green-600' : 'bg-slate-100 text-slate-400'}`}><Check size={10} strokeWidth={3} /></span>
+			{label}
+		</li>)}
+	</ul>
+}
+
 function AuthAside({ signup }) {
 	return <aside className="auth-aside">
 		<div className="relative z-10 flex h-full max-w-xl flex-col justify-between">
@@ -61,6 +76,7 @@ export default function AuthPage({ mode }) {
 		if (signup && values.name.trim().length < 2) next.name = 'Please enter your full name.'
 		if (!/^\S+@\S+\.\S+$/.test(values.email)) next.email = 'Enter a valid email address.'
 		if (values.password.length < 8) next.password = 'Password must be at least 8 characters.'
+		else if (signup && (!/\d/.test(values.password) || !/[a-z]/.test(values.password) || !/[A-Z]/.test(values.password))) next.password = 'Password must meet all requirements.'
 		if (signup && values.confirm !== values.password) next.confirm = 'Passwords do not match.'
 		if (signup && !values.terms) next.terms = 'Please accept the Terms and Privacy Policy.'
 		setErrors(next)
@@ -77,7 +93,10 @@ export default function AuthPage({ mode }) {
 				{submitted ? <div className="rounded-2xl border border-green-200 bg-green-50 p-6 text-center"><CheckCircle2 className="mx-auto text-green-600" size={36} /><h2 className="mt-3 text-lg font-extrabold text-slate-900">{signup ? 'Account details look good!' : 'Login details submitted!'}</h2><p className="mt-2 text-sm leading-6 text-slate-600">This frontend is ready to connect to your authentication API.</p><button onClick={() => setSubmitted(false)} className="btn-primary mt-5">Back to form</button></div> : <form onSubmit={handleSubmit} noValidate className="space-y-5">
 					{signup && <InputField id="name" label="Full name" icon={UserRound} placeholder="Alex Morgan" value={values.name} onChange={update('name')} error={errors.name} autoComplete="name" />}
 					<InputField id="email" label="Email address" type="email" icon={Mail} placeholder="you@example.com" value={values.email} onChange={update('email')} error={errors.email} autoComplete="email" />
-					<InputField id="password" label="Password" type="password" icon={LockKeyhole} placeholder={signup ? 'At least 8 characters' : 'Enter your password'} value={values.password} onChange={update('password')} error={errors.password} autoComplete={signup ? 'new-password' : 'current-password'} />
+					<div>
+						<InputField id="password" label="Password" type="password" icon={LockKeyhole} placeholder={signup ? 'At least 8 characters' : 'Enter your password'} value={values.password} onChange={update('password')} error={errors.password} autoComplete={signup ? 'new-password' : 'current-password'} />
+						{signup && <PasswordRequirements password={values.password} />}
+					</div>
 					{signup && <InputField id="confirm" label="Confirm password" type="password" icon={LockKeyhole} placeholder="Repeat your password" value={values.confirm} onChange={update('confirm')} error={errors.confirm} autoComplete="new-password" />}
 
 					{signup ? <div><label className="flex cursor-pointer items-start gap-3 text-sm leading-5 text-slate-500"><input type="checkbox" checked={values.terms} onChange={update('terms')} className="mt-0.5 size-4 rounded border-slate-300 accent-green-600" /><span>I agree to the <a href="#terms" className="font-semibold text-green-600 hover:text-green-700">Terms of Service</a> and <a href="#privacy" className="font-semibold text-green-600 hover:text-green-700">Privacy Policy</a>.</span></label>{errors.terms && <p className="mt-1.5 text-xs font-medium text-red-500">{errors.terms}</p>}</div> : <div className="flex items-center justify-between text-sm"><label className="flex cursor-pointer items-center gap-2 text-slate-500"><input type="checkbox" checked={values.remember} onChange={update('remember')} className="size-4 rounded border-slate-300 accent-green-600" />Remember me</label><a href="#forgot" className="font-bold text-green-600 hover:text-green-700">Forgot password?</a></div>}
