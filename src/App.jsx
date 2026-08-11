@@ -41,13 +41,13 @@ function Navbar() {
 			<nav className="desktop-nav" aria-label="Main navigation">
 				{navItems.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
 			</nav>
-			<div className="nav-actions"><Link to="/login" className="text-link">Log in</Link><Link to="/login" className="button button-primary button-small">Open myhourspay <ArrowRight size={15} /></Link></div>
+			<div className="nav-actions"><Link to="/login" className="text-link">Log in</Link><Link to="/signup" className="button button-primary button-small">Create an account <ArrowRight size={15} /></Link></div>
 			<button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Toggle navigation">{open ? <X /> : <Menu />}</button>
 		</div>
 		<div className={`mobile-nav ${open ? 'open' : ''}`}>
 			{navItems.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setOpen(false)}>{label}</a>)}
 			<Link to="/login" onClick={() => setOpen(false)}>Log in</Link>
-			<Link to="/login" className="button button-primary" onClick={() => setOpen(false)}>Open myhourspay <ArrowRight size={16} /></Link>
+			<Link to="/signup" className="button button-primary" onClick={() => setOpen(false)}>Create an account <ArrowRight size={16} /></Link>
 		</div>
 	</header>
 }
