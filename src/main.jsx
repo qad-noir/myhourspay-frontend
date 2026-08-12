@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import AuthPage from './AuthPage.jsx'
+import DashboardPage from './DashboardPage.jsx'
 
 createRoot(document.getElementById('root')).render(
 	<StrictMode>
@@ -12,6 +13,7 @@ createRoot(document.getElementById('root')).render(
 				<Route path="/" element={<App />} />
 				<Route path="/login" element={<AuthPage mode="login" />} />
 				<Route path="/signup" element={<AuthPage mode="signup" />} />
+				<Route path="/dashboard" element={<DashboardPage />} />
 				<Route path="*" element={<App />} />
 			</Routes>
 		</BrowserRouter>
